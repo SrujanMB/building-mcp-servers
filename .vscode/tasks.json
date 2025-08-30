@@ -1,0 +1,110 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "MCP Server",
+      "type": "shell",
+      "command": "${command:python.interpreterPath} -m debugpy --listen 127.0.0.1:5678 server.py http",
+      "isBackground": true,
+      "options": {
+        "cwd": "${workspaceFolder}/src"
+      },
+      "presentation": {
+        "group": "mcp_server",
+        "showReuseMessage": false
+      },
+      "problemMatcher": {
+        "pattern": [
+          {
+            "regexp": "^.*$",
+            "file": 0,
+            "location": 1,
+            "message": 2
+          }
+        ],
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": ".*",
+          "endsPattern": "Application startup complete|running"
+        }
+      }
+    },
+    {
+      "label": "MCP Inspector",
+      "type": "shell",
+      "command": "npm run dev:inspector --config config.json",
+      "isBackground": true,
+      "options": {
+        "cwd": "${workspaceFolder}/inspector"
+      },
+      "presentation": {
+        "group": "mcp_server",
+        "showReuseMessage": false
+      },
+      "problemMatcher": {
+        "pattern": [
+          {
+            "regexp": "^.*$",
+            "file": 0,
+            "location": 1,
+            "message": 2
+          }
+        ],
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "Starting MCP inspector",
+          "endsPattern": "Proxy server listening on port"
+        }
+      },
+      "dependsOn": [
+        "MCP Server"
+      ]
+    },
+    {
+      "label": "Open Agent Builder",
+      "type": "shell",
+      "command": "echo ${input:openAgentBuilder}",
+      "presentation": {
+        "reveal": "never",
+        "echo": false,
+        "showReuseMessage": false,
+        "close": true
+      },
+      "dependsOn": [
+        "MCP Server"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "Terminate All Tasks",
+      "type": "shell",
+      "command": "echo ${input:terminate}",
+      "presentation": {
+        "reveal": "never",
+        "echo": false,
+        "showReuseMessage": false,
+        "close": true
+      },
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "openAgentBuilder",
+      "type": "command",
+      "command": "ai-mlstudio.agentBuilder",
+      "args": {
+        "initialMCPs": [
+          "demo-mcp"
+        ],
+        "triggeredFrom": "vsc-tasks"
+      }
+    },
+    {
+      "id": "terminate",
+      "type": "command",
+      "command": "workbench.action.tasks.terminate",
+      "args": "terminateAll"
+    }
+  ]
+}
