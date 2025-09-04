@@ -10,7 +10,7 @@
         "cwd": "${workspaceFolder}/src"
       },
       "presentation": {
-        "group": "mcp_server",
+        "group": "mcp",
         "showReuseMessage": false
       },
       "problemMatcher": {
@@ -38,7 +38,7 @@
         "cwd": "${workspaceFolder}/inspector"
       },
       "presentation": {
-        "group": "mcp_server",
+        "group": "mcp",
         "showReuseMessage": false
       },
       "problemMatcher": {
@@ -69,6 +69,22 @@
         "echo": false,
         "showReuseMessage": false,
         "close": true
+      },
+      "dependsOn": [
+        "MCP Server"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "MCP Client",
+      "type": "shell",
+      "command": "${command:python.interpreterPath} client.py",
+      "options": {
+        "cwd": "${workspaceFolder}/src"
+      },
+      "presentation": {
+        "group": "mcp",
+        "showReuseMessage": false
       },
       "dependsOn": [
         "MCP Server"
