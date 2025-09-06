@@ -7,3 +7,4 @@ We will build a document mangement MCP server. In this case we are just running 
 Click the links below to be taken to each part of the workshop:
 
 1. [Tools](1.tools.md)
+2. [Resources](2.resources.md)
