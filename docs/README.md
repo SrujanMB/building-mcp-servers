@@ -8,3 +8,4 @@ Click the links below to be taken to each part of the workshop:
 
 1. [Tools](1.tools.md)
 2. [Resources](2.resources.md)
+3. [Prompts](3.prompts.md)
